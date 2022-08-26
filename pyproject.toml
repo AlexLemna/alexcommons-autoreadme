@@ -1,0 +1,117 @@
+[project]
+name = "alexcommons-autoreadme"
+version = "0.0.0"
+authors = [
+    { name = "Alexander Lemna", email = "25907117+AlexLemna@users.noreply.github.com" },
+]
+dynamic = ["dependencies", "optional-dependencies"]
+license.file = "LICENSE"
+requires-python = ">= 3.7"
+
+
+[project.scripts]
+alexcommons-autoreadme = "alexcommons_autoreadme.__main__:run"
+
+[project.urls]
+homepage = "https://github.com/AlexLemna/alexcommons-autoreadme"
+documentation = "https://github.com/AlexLemna/alexcommons-autoreadme"
+repository = "https://github.com/AlexLemna/alexcommons-autoreadme"
+
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+# ###############
+#   TOOLS
+# ###############
+# black
+# -----
+# The opinionated Python autoformatter. "Any customer can have a car
+# painted any color that he wants, so long as it is black."
+[tool.black]
+target-version = ["py37", "py38", "py39", "py310", "py311"]
+
+
+# interrogate
+# -----------
+# Measure docstring coverage
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = false
+ignore-magic = false
+ignore-module = false
+ignore-nested-classes = true
+ignore-nested-functions = true
+ignore-private = false
+ignore-property-decorators = false
+ignore-semiprivate = false
+
+
+# isort
+# -----
+# An autoformatting tool for Python import statements.
+[tool.isort]
+profile = "black"
+add_imports = "from __future__ import annotations"
+skip_gitignore = true
+# sort strictly alphabetical,
+# don't put 'import foo' above 'from bar import gizmo'
+force_sort_within_sections = true
+
+# PyTest
+# ------
+[tool.pytest.ini_options]
+addopts = "-vv -rsxX -l --tb=short --strict-markers"
+# For addopts, see: https://docs.pytest.org/en/6.2.x/reference.html#ini-options-ref
+#
+# reporting:
+# -l, --showlocals      show locals in tracebacks (disabled by default).
+# -r chars              show extra test summary info as specified by chars:
+#                       (f)ailed, (E)rror, (s)kipped, (x)failed, (X)passed,
+#                       (p)assed, (P)assed with output, (a)ll except passed
+#                       (p/P), or (A)ll. (w)arnings are enabled by default
+#                       (see --disable-warnings), 'N' can be used to reset
+#                       the list. (default: 'fE').
+# --tb=style            traceback print mode
+#                       (auto/long/short/line/native/no).
+# -v, --verbose         increase verbosity.
+#
+# pytest-warnings:
+# --strict-markers      markers not registered in the `markers` section of
+#                       the configuration file raise errors.
+log_cli = true
+minversion = "6.0"
+python_files = ["test_*.py", "__init__.py"]
+python_functions = ["test_*"]
+testpaths = ["tests"]
+
+
+# setuptools
+# ----------
+# A library for packaging Python projects.
+[tool.setuptools.dynamic]
+dependencies = { file = "requirements.txt" }
+optional-dependencies.dev = { file = "requirements-dev.txt" }
+
+
+# tox
+# ---
+# A tool for standardizing and automating testing across different
+# Python versions.
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py37, py38, py39, py310, py311
+isolated_build = True
+
+[testenv]
+allowlist_externals =
+    pytest
+    tox
+deps =
+    -r requirements.txt
+commands =
+    alexcommons-autoreadme
+    tox --version
+"""
+# another command: pytest -vv -rsxX -l --tb=short --capture=sys
