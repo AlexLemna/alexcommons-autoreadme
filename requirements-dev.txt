@@ -1,0 +1,10 @@
+black
+interrogate
+isort ~= 5.10.1
+packaging
+pre-commit
+pytest >= 6.0.0
+setuptools
+tox >= 3.25.1
+twine
+wheel

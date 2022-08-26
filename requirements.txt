@@ -1,0 +1,2 @@
+tomli >= 2; python_version < "3.11"
+importlib-metadata >= 1.0 ; python_version < "3.8"
