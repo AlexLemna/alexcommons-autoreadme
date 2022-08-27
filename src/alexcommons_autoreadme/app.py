@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+"""High-level program functionality for alexcommons_autoreadme."""
 from __future__ import annotations
 
 from argparse import ArgumentParser
@@ -8,6 +10,7 @@ from alexcommons_autoreadme._metadata import APP_NAME, __version__
 
 
 def parse():
+    """Parse user input from the command line."""
 
     parser = ArgumentParser(prog=APP_NAME)
 
@@ -27,11 +30,12 @@ for more information."""
     version_cmds.add_argument(*valid_args, action="count", help=help, default=0)
 
     def show_version(detailed: bool = False):
+        """Displays program version data, plus optional details."""
         lines_to_display = [version_display]
         if detailed:
             lines_to_display.append(f"     at {__file__}")
             # plus additional info...
-            lines_to_display = detailed_version_output(lines_to_display)
+            lines_to_display.extend(detailed_version_output())
 
         for line in lines_to_display:
             print(line)

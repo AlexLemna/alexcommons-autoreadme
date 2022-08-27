@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+"""Contains app metadata, like program name and version."""
 from __future__ import annotations
 
 try:

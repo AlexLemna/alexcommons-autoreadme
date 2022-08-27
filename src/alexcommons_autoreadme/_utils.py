@@ -1,12 +1,23 @@
+# -*- coding: utf-8 -*-
+"""Various program utilities."""
 from __future__ import annotations
 
 
 def clean_multiline_str(string: str) -> str:
+    """Turns a multi-line string into a single-line string."""
     s = " ".join(string.splitlines())
     return s
 
 
 def is_tomllib_here() -> bool | str:
+    """Checks if tomllib can be imported.
+
+    Returns:
+    - `True` if `tomllib` can be imported
+    - `f"tomli {VERSION}"` if `tomllib` cannot be imported but
+    tomli can
+    - `False` if neither `tomllib` nor `tomli` can be imported
+    """
     try:
         import tomllib
 
@@ -23,6 +34,14 @@ def is_tomllib_here() -> bool | str:
 
 
 def is_importlib_metadata_here() -> bool | str:
+    """Checks if importlib.metadata can be imported.
+
+    Returns:
+    - `True` if `importlib.metadata` can be imported
+    - `f"importlib_metadata {VERSION}"` if `tomllib` cannot be imported but
+    tomli can
+    - `False` if neither `importlib.metadata` nor `importlib_metadata` can be imported
+    """
     try:
         import importlib.metadata
 

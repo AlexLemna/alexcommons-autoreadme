@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+"""Helper functions for the command-line interface."""
 from __future__ import annotations
 
 import platform
@@ -10,8 +12,9 @@ from alexcommons_autoreadme._utils import (
 )
 
 
-def detailed_version_output(basic_output: list[str]):
-    detailed_output = basic_output
+def detailed_version_output() -> list[str]:
+    """Returns a list of details about dependencies, Python, and the operating system."""
+    detailed_output = []
 
     # check for tomllib (or tomli backport)
     tomllib = is_tomllib_here()
