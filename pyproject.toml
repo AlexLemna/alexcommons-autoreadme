@@ -1,6 +1,6 @@
 [project]
 name = "alexcommons-autoreadme"
-version = "0.0.1"
+version = "0.1.1"
 authors = [
     { name = "Alexander Lemna", email = "25907117+AlexLemna@users.noreply.github.com" },
 ]

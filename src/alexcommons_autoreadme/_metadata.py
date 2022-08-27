@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 try:
-    from importlib import metadata
-    from importlib.metadata import PackageNotFoundError
+    from importlib.metadata import PackageNotFoundError, version
 except ImportError:  # Python < 3.8
-    from importlib_metadata import PackageNotFoundError, metadata
+    from importlib_metadata import PackageNotFoundError, version
 
 __all__ = ["__version__", "__version_info__"]
 
@@ -14,7 +13,7 @@ APP_NAME = "alexcommons-autoreadme"
 VERSION_UNKNOWN = "version could not be detected"
 
 try:
-    __version__ = metadata.version(APP_NAME)
+    __version__ = version(APP_NAME)
 except (PackageNotFoundError, NameError):
     __version__ = VERSION_UNKNOWN
 
