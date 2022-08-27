@@ -1,10 +1,12 @@
-black
-interrogate
-isort ~= 5.10.1
-packaging
-pre-commit
-pytest >= 6.0.0
-setuptools
-tox >= 3.25.1
-twine
-wheel
+bandit  # like spellcheck, but for common security issues in Python code
+black # formatting
+detect-secrets # don't commit things that look like passwords
+interrogate # checks docstring coverage
+isort ~= 5.10.1 # sorts imports
+packaging # for building/releasing
+pre-commit # when I commit/push to git, runs some helper scripts
+pytest >= 6.0.0 # for testing
+setuptools # for building/releasing
+tox >= 3.25.1 # for testing
+twine # for building/releasing
+wheel # for building/releasing

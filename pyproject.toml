@@ -36,15 +36,14 @@ target-version = ["py37", "py38", "py39", "py310", "py311"]
 # -----------
 # Measure docstring coverage
 [tool.interrogate]
-ignore-init-method = true
-ignore-init-module = false
-ignore-magic = false
-ignore-module = false
+badge-style = "for-the-badge"
+exclude = ["build"]
+fail-under = 80
+generate-badge = "tools/badges/."
+ignore-magic = true
 ignore-nested-classes = true
-ignore-nested-functions = true
-ignore-private = false
+ignore-nested-functions = false
 ignore-property-decorators = false
-ignore-semiprivate = false
 
 
 # isort
@@ -89,7 +88,7 @@ testpaths = ["tests"]
 
 # setuptools
 # ----------
-# A library for packaging Python projects.
+# A library for packaging our Python project.
 [tool.setuptools.dynamic]
 dependencies = { file = "requirements.txt" }
 optional-dependencies.dev = { file = "requirements-dev.txt" }
