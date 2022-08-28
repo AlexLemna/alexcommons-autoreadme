@@ -1,12 +1,11 @@
-bandit  # like spellcheck, but for common security issues in Python code
-black # formatting
-detect-secrets # don't commit things that look like passwords
-interrogate # checks docstring coverage
-isort ~= 5.10.1 # sorts imports
-packaging # for building/releasing
-pre-commit # when I commit/push to git, runs some helper scripts
-pytest >= 6.0.0 # for testing
-setuptools # for building/releasing
-tox >= 3.25.1 # for testing
-twine # for building/releasing
-wheel # for building/releasing
+bandit  # SECURITY: like spellcheck, but for common security issues in Python code
+black ~= 22.0 # FORMATTING: Autoformats Python code. Black's autoformatting rules are stable, but they may be tweaked from year to year. ~=22.0 pins it to the style from the 2022 calendar year.
+detect-secrets # SECURITY: don't commit things that look like passwords
+interrogate # DOCUMENTATION: checks if all modules, classes, functions have docstrings
+isort ~= 5.10.1 # FORMATTING: sorts imports
+packaging # TESTING: used during tests to make sure our version numbers match the accepted Python format
+pre-commit # GENERAL: when I commit/push to git, runs some helper scripts
+pytest >= 6.0.0 # TESTING: for testing
+setuptools_scm[toml] >= 6.2 # Lets us see a more accurate 'git describe'-ish version if it looks like we're in a development environment
+tox >= 3.25.1 # TESTING: lets us run PyTest across a bunch of different Python versions
+tox-wheel >= 0.7 # TESTING: lets us run PyTest against wheels as well as sdists

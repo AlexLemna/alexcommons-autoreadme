@@ -1,6 +1,6 @@
 [project]
 name = "alexcommons-autoreadme"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
     { name = "Alexander Lemna", email = "25907117+AlexLemna@users.noreply.github.com" },
 ]
@@ -17,7 +17,11 @@ documentation = "https://github.com/AlexLemna/alexcommons-autoreadme"
 repository = "https://github.com/AlexLemna/alexcommons-autoreadme"
 
 [build-system]
-requires = ["setuptools", "setuptools_scm"]
+# 'requires' covers what gets installed in a temporary build-backend virtualenv
+# when you run your PEP517/518 frontend ('build', in our case, but could
+# also be 'flit', 'pdm', etc.). This is *not* the same as what's I've put
+# in `requirements-publish.txt`. That file covers the frontend
+requires = ["setuptools >= 61.0", "setuptools_scm[toml] >= 6.2"]
 build-backend = "setuptools.build_meta"
 
 
@@ -88,11 +92,12 @@ testpaths = ["tests"]
 
 # setuptools
 # ----------
-# A library for packaging our Python project.
+# A backend library for packaging our Python project.
 [tool.setuptools.dynamic]
 dependencies = { file = "requirements.txt" }
 optional-dependencies.dev = { file = "requirements-dev.txt" }
 
+[tool.setuptools_scm]
 
 # tox
 # ---
@@ -101,10 +106,14 @@ optional-dependencies.dev = { file = "requirements-dev.txt" }
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py37, py38, py39, py310, py311
+envlist = {py37,py38,py39,py310,py311}-{wheel,sdist}
 isolated_build = True
 
 [testenv]
+wheel =
+    wheel: true
+    sdist: false
+wheel_pep517 = true
 allowlist_externals =
     pytest
     tox

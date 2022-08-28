@@ -1,0 +1,10 @@
+# General notes:
+#   A PEP517/518-compatible sep of tools for building and distributing
+# sdists (source distributions) and wheels (binary distributions). You
+# don't really need these if you're just developing for yourself, hunting
+# down a bug, or poking around, but they could be useful if you want to
+# fork this repository and distribute your own version.
+build # PACKAGING: A 'build-frontend'. We could just use pip, but 'build' aims to be simpler and should give us flexibility in a couple unusual situations (see: https://pypa-build.readthedocs.io/en/latest/mission.html).
+setuptools >= 61.0 # PACKAGING: A 'build-backend'. It actually builds the sdists and wheels.
+setuptools_scm[toml] >= 6.2 # PACKAGING: Useful for embedding version number.
+twine # PACKAGING: for uploading sdists and wheels to PyPI
