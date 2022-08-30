@@ -1,4 +1,4 @@
-bandit  # SECURITY: like spellcheck, but for common security issues in Python code
+bandit[toml]  # SECURITY: like spellcheck, but for common security issues in Python code
 black ~= 22.0 # FORMATTING: Autoformats Python code. Black's autoformatting rules are stable, but they may be tweaked from year to year. ~=22.0 pins it to the style from the 2022 calendar year.
 detect-secrets # SECURITY: don't commit things that look like passwords
 interrogate # DOCUMENTATION: checks if all modules, classes, functions have docstrings

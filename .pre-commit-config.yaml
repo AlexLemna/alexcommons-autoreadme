@@ -37,6 +37,8 @@ repos:
     hooks:
       - id: bandit # Bandit is a tool for finding common security issues in Python code
         stages: ["manual", "push"]
+        args: ["-c", "pyproject.toml"]
+        additional_dependencies: ["bandit[toml]"]
 
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.3.0
