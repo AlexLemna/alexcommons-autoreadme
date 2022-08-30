@@ -2,6 +2,9 @@
 """Various program utilities."""
 from __future__ import annotations
 
+from enum import Enum
+from pathlib import Path
+
 
 def clean_multiline_str(string: str) -> str:
     """Turns a multi-line string into a single-line string."""
@@ -33,6 +36,32 @@ def is_tomllib_here() -> bool | str:
             return False
 
 
+def any_tomllib():
+    try:
+        try:  # Python >= 3.11
+            import tomllib
+        except ImportError:  # Python < 3.11
+            import tomli as tomllib
+
+        return tomllib
+
+    except ImportError:  # Python < 3.11 and no backported tomllib
+        return None
+
+
+def any_importlib_metadata():
+    try:
+        try:  # Python >= 3.8
+            import importlib.metadata as implibmd
+        except ImportError:  # Python < 3.8
+            import importlib_metadata as implibmd
+
+        return implibmd
+
+    except ImportError:  # Python < 3.8 and no backported importlib.metadata
+        return None
+
+
 def is_importlib_metadata_here() -> bool | str:
     """Checks if importlib.metadata can be imported.
 
@@ -59,3 +88,39 @@ def is_importlib_metadata_here() -> bool | str:
         except ImportError:
             # Python < 3.8 and no backported importlib.metadata
             return False
+
+
+def setuptools_scm_or_nuthin():
+    try:
+        import setuptools_scm
+
+        return setuptools_scm
+    except ImportError:
+        return None
+
+
+def find_pyproject_toml_dir(start_path: Path) -> Path:
+    if start_path.is_file():
+        start_path = start_path.parent
+    for child in start_path.iterdir():
+        if child.is_file() and child.name("pyproject.toml"):
+            return start_path
+    return find_pyproject_toml_dir(start_path.parent)
+
+
+def dir_readme(dir_path: Path) -> Path:
+    if dir_path.is_dir() is False:
+        result = dir_readme(dir_path=Path(__file__).parent)
+        return result
+
+    readme = dir_path / "README.md"
+    if readme.exists():
+        return readme
+    elif readme.exists() is False:
+        ...
+
+
+# https://docs.python.org/3/library/enum.html#omitting-values
+class NoValueEnum(Enum):
+    def __repr__(self):
+        return "<%s.%s>" % (self.__class__.__name__, self.name)

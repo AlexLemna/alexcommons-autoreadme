@@ -5,8 +5,11 @@ from __future__ import annotations
 from argparse import ArgumentParser
 import sys
 
-from alexcommons_autoreadme._cli import detailed_version_output
-from alexcommons_autoreadme._metadata import APP_NAME, __version__
+from auld_autoreadme import __version__
+from auld_autoreadme._cli import detailed_version_output
+from auld_autoreadme._metadata import APP_NAME
+
+# from alexcommons_autoreadme._version import __version__
 
 
 def parse():
@@ -33,7 +36,7 @@ for more information."""
         """Displays program version data, plus optional details."""
         lines_to_display = [version_display]
         if detailed:
-            lines_to_display.append(f"     at {__file__}")
+            lines_to_display.append(f"    at {__file__}")
             # plus additional info...
             lines_to_display.extend(detailed_version_output())
 
@@ -62,3 +65,20 @@ convenience function for scripting purposes, etc."""
         elif args.version >= 2:
             show_version(detailed=True)
         return
+
+
+def main():
+    """Main app behavior.
+
+    0. Find the project's root directory by looking for pyproject.toml.
+    0. Create a set of the project's gitignore rules.
+    0. Create a set of the project's directories, matching them against gitignore.
+    0. For directory in project_directories, create a README if no README exists.
+    Title the readme with the directory's relative path from the project root.
+    0. In the README, create a 'tree' or a basic code-style list of the project's
+    contents (matched against gitignore), with each Python file or module being
+    followed by its docstrings. For non-Python files, have a list of common files
+    and their descriptions (requirements.txt -> A project's Python dependencies,
+    .pre-commit-config.yaml -> configuration for pre-commit, etc.).
+
+    """

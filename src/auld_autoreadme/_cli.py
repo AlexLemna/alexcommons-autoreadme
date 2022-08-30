@@ -2,10 +2,20 @@
 """Helper functions for the command-line interface."""
 from __future__ import annotations
 
+from pathlib import Path
 import platform
 import sys
 
-from alexcommons_autoreadme._utils import (
+try:
+    from importlib.metadata import PackageNotFoundError, files
+except ImportError:  # Python < 3.8
+    try:
+        from importlib_metadata import PackageNotFoundError, files
+    except ImportError:
+        pass
+
+from auld_autoreadme._metadata import APP_NAME
+from auld_autoreadme._utils import (
     clean_multiline_str,
     is_importlib_metadata_here,
     is_tomllib_here,
@@ -15,6 +25,9 @@ from alexcommons_autoreadme._utils import (
 def detailed_version_output() -> list[str]:
     """Returns a list of details about dependencies, Python, and the operating system."""
     detailed_output = []
+    if is_importlib_metadata_here():
+        # 'via \foo\bar\Scripts\alexcommons-autoreadme.exe'
+        detailed_output.append(f"        via {Path(files(APP_NAME)[0]).resolve()}")
 
     # check for tomllib (or tomli backport)
     tomllib = is_tomllib_here()

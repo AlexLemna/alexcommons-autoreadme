@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from alexcommons_autoreadme._metadata import APP_NAME
-from alexcommons_autoreadme._utils import clean_multiline_str
+from auld_autoreadme._metadata import APP_NAME
+from auld_autoreadme._utils import clean_multiline_str
 
 try:
     import tomllib
