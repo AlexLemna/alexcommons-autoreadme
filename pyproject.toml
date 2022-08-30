@@ -27,6 +27,13 @@ build-backend = "setuptools.build_meta"
 # ###############
 #   TOOLS
 # ###############
+# bandit
+# ------
+# Scans Python code for common security vulnerabilities.
+[tool.bandit]
+assert_used.skips = ['*_test.py', '*test_*.py']
+
+
 # black
 # -----
 # The opinionated Python autoformatter. "Any customer can have a car
