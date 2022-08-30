@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Helper functions for the command-line interface."""
 from __future__ import annotations
 

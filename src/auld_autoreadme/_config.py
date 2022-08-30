@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Application configuration data."""
 from __future__ import annotations
 

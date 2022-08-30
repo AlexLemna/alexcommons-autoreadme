@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Various program utilities."""
 from __future__ import annotations
 

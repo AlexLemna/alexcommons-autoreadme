@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import annotations
 
 from auld_autoreadme._metadata.version import AppVersion, VersionFromFile

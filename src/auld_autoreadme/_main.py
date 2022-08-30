@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 from __future__ import annotations
 
-from ast import pattern
 from dataclasses import asdict, dataclass, field
 import fnmatch
 from pathlib import Path

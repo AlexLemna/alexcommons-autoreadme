@@ -26,9 +26,6 @@ repos:
       - id: end-of-file-fixer # ensures that a file is either empty, or ends with one newline.
         stages: ["commit", "manual", "push"]
 
-      - id: fix-encoding-pragma # adds # -*- coding: utf-8 -*- to the top of python files.
-        stages: ["commit", "manual", "push"]
-
       - id: requirements-txt-fixer # sorts entries in requirements.txt.
         stages: ["commit", "manual", "push"]
 

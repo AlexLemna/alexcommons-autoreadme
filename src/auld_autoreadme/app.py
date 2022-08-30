@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """High-level program functionality for alexcommons_autoreadme."""
 from __future__ import annotations
 

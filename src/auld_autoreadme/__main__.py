@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """`__main__.py` allows this program to run without being imported - for
 instance, from the command line.
 """
